@@ -1,0 +1,16 @@
+{
+  "name": "automation-linus-analytics-with-playwright",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test:headed": "npx playwright test --project=chromium ./tests/LogIn_Linus_App.spec.js --headed",
+    "test:headless": "npx playwright test --project=chromium ./tests/LogIn_Linus_App.spec.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.37.1"
+  }
+}
