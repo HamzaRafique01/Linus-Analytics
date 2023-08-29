@@ -23,7 +23,6 @@ test('very slow test', async ({ page }) => {
  * @see https://playwright.dev/docs/test-configuration
  */
 module.exports = defineConfig({
-  // globalSetup: "./globel-setup",
   testDir: './Linus Analytics',
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -42,7 +41,7 @@ module.exports = defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
-    storageState: "./LoginAuth.json",
+
   },
 
    
