@@ -2,28 +2,12 @@
 const { defineConfig, devices } = require('@playwright/test');
 
 /**
- * Read environment variables from file.
- * https://github.com/motdotla/dotenv
- */
-// require('dotenv').config();
-
-import { test, expect } from '@playwright/test';
-
-test('slow test', async ({ page }) => {
-  test.slow(); // Easy way to triple the default timeout
-  // ...
-});
-
-test('very slow test', async ({ page }) => {
-  test.setTimeout(120000);
-  // ...
-});
-
-/**
  * @see https://playwright.dev/docs/test-configuration
  */
 module.exports = defineConfig({
-  testDir: './Linus Analytics',
+  globalSetup: "./global-setup",
+  testDir: "./tests",
+
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -37,11 +21,10 @@ module.exports = defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-    // baseURL: 'http://127.0.0.1:3000',
-
+     baseURL: 'https://dev.d1t5gk6ckyak9p.amplifyapp.com',
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
-
+    storageState: "./loginAuth.json",
   },
 
    
@@ -51,8 +34,11 @@ module.exports = defineConfig({
     
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: { ...devices['Desktop Chrome']
+    }
+     
     },
+
 
     {
       name: 'firefox',
@@ -88,11 +74,11 @@ module.exports = defineConfig({
   ],
 
   /* Run your local dev server before starting the tests */
-  webServer: {
-    command: 'npm run start',
-    url: 'http://127.0.0.1:3000',
-    reuseExistingServer: !process.env.CI,
-    timeout: 120 * 1000,
-  },
+  // webServer: {
+    // command: 'npm run start',
+    // url: 'http://127.0.0.1:3000',
+    // reuseExistingServer: !process.env.CI,
+    // timeout: 120 * 1000,
+  // },
 });
 

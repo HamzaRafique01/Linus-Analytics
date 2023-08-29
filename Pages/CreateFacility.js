@@ -1,7 +1,6 @@
 class CreateFacility{
 
     constructor(page){
-
         this.page = page;
         this.facilityicon = "//img[@alt='Facilities-icon']"
         this.Addfacility = "//button[@class='MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-disableElevation MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-disableElevation css-4i0zct']"
@@ -19,70 +18,47 @@ class CreateFacility{
         this.state = "//div[@id='mui-component-select-state']";
         this.weightdesignation = "//div[@id='mui-component-select-weight']";
         this.selectweight = "//li[@data-value='40 kg']";
-
     }
-
     async createFacility(name, street1, street2, city, zipcode, page){
-        
         await this.page.locator(this.facilityanmeInput).fill(name);
         await this.page.locator(this.street1Input).fill(street1);
         await this.page.locator(this.street2Input).fill(street2);
         await this.page.locator(this.cityInput).fill(city);
         await this.page.locator(this.zipcodeInput).fill(zipcode);
-
     }
-
-
     async clickFacilityIcon(page){
         await this.page.locator(this.facilityicon).click()
-        
     }
-
     async clickAddFacility(page){
         await this.page.locator(this.Addfacility).click()
-    
     }
-
     async clickFacilityCountry(page){
         await this.page.locator(this.country).click();
-        
     }
-
     async selectFacilityCountry(page){
         await this.page.locator(this.selectcountry).click();
-        
     }
-
     async clickFacilitystate(page){
-        await this.page.locator(this.state).click();       
+        await this.page.locator(this.state).click();
     }
-
     async slecteFacilitystate(page){
         await this.page.locator(this.selectstate).click();
-       
     }
-
     async clickFacilityCustomer(page){
         await this.page.locator(this.customername).click();
     }
-
     async selectFacilityCustomer(page){
         await this.page.locator(this.customernameselect).click();
     }
-
     async clickFacilityweight(page){
         await this.page.locator(this.weightdesignation).click();
     }
-
     async selectFacilityweight(page){
         await this.page.locator(this.selectweight).click();
     }
-
     async clickonFacilitySavebtn(pages){
         await this.page.locator(this.savebtn).click();
     }
-
-
 }
 
 

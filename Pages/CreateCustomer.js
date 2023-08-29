@@ -1,6 +1,6 @@
 
 
-class CustomerCreate{
+class CreateCustomer{
 
     constructor(page){
 
@@ -66,4 +66,4 @@ class CustomerCreate{
     }
 }
 
-module.exports = {CustomerCreate}
+module.exports = {CreateCustomer};
