@@ -5,19 +5,19 @@ class CreateFacility{
         this.page = page;
         this.facilityicon = "//img[@alt='Facilities-icon']"
         this.Addfacility = "//button[@class='MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-disableElevation MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-disableElevation css-4i0zct']"
-        this.customername = "//input[@name='customer']";
+        this.customername = "//div[@id='mui-component-select-customer']";
         this.customernameselect = "//li[@data-value='63']";
         this.facilityanmeInput = "//input[@placeholder='Facility Name']";
         this.street1Input = "//input[@placeholder='Street Address 1']";
         this.street2Input = "//input[@name='streetAddress2']";
         this.cityInput = "//input[@name='city']";
         this.zipcodeInput = "//input[@placeholder='Zip Code']";
-        this.country = "//input[@name='country']";
+        this.country = "//div[@id='mui-component-select-country']";
         this.selectstate = "//li[@data-value='Kelly']"
         this.savebtn = "//button[@class='MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-fullWidth css-k2bprm']";
         this.selectcountry = "//li[@data-value='Ralph Hubbard']";
-        this.state = "//input[@name='state']";
-        this.weightdesignation = "//input[@name='weight']";
+        this.state = "//div[@id='mui-component-select-state']";
+        this.weightdesignation = "//div[@id='mui-component-select-weight']";
         this.selectweight = "//li[@data-value='40 kg']";
 
     }
@@ -68,6 +68,14 @@ class CreateFacility{
 
     async selectFacilityCustomer(page){
         await this.page.locator(this.customernameselect).click();
+    }
+
+    async clickFacilityweight(page){
+        await this.page.locator(this.weightdesignation).click();
+    }
+
+    async selectFacilityweight(page){
+        await this.page.locator(this.selectweight).click();
     }
 
     async clickonFacilitySavebtn(pages){
