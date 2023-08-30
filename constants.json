@@ -15,5 +15,12 @@
             "F_street2" : "Banff",
             "F_City": "Alberta",
             "F_ZipCode": "3456463"
+        },
+
+    "Scale":
+        {
+            "Scale ID":"13245",
+            "Scale Name":"IOT Scale"
+           
         }
 }
