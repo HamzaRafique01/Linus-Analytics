@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test:headed": "npx playwright test --project=chromium ./tests/*.js --headed",
-    "test:headless": "npx playwright test --project=chromium ./tests/LogIn_Linus_App.spec.js"
+    "test:headless": "npx playwright test --project=chromium ./tests/*.js"
   },
   "keywords": [],
   "author": "",
