@@ -1,0 +1,19 @@
+{
+    "customer":
+        {
+            "C_customer_name":"Alex User Services",
+            "C_street1":"211 Banff Ave",
+            "C_street2" : "Banff",
+            "C_City": "Alberta",
+            "C_ZipCode": "3456463"
+        },
+
+    "facility":
+        {
+            "F_Facility_name":"Alex Facility Services",
+            "F_street1":"211 Banff Ave",
+            "F_street2" : "Banff",
+            "F_City": "Alberta",
+            "F_ZipCode": "3456463"
+        }
+}
