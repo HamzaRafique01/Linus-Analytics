@@ -17,10 +17,10 @@
             "F_ZipCode": "3456463"
         },
 
-    "Scale":
+    "scale":
         {
-            "Scale ID":"13245",
-            "Scale Name":"IOT Scale"
+            "Scale_id":"13245",
+            "Scale_Name":"Alex Scale"
            
         }
 }

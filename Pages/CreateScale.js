@@ -12,10 +12,10 @@ class CreateScale{
     }
 
 
-    async ScaleCreate(Scale_ID, Scale_Name, page){
+    async ScaleCreate(scaleid, name, page){
         
-        await this.page.locator(this.ScaleIDInput).fill(Scale_ID);
-        await this.page.locator(this.ScaleNameInput).fill(Scale_Name);
+        await this.page.locator(this.ScaleIDInput).fill(scaleid);
+        await this.page.locator(this.ScaleNameInput).fill(name);
 
     }
 
