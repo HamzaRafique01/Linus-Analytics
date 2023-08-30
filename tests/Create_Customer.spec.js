@@ -1,4 +1,4 @@
-const {test, Expect , chromium, page} = require('@playwright/test');
+const { test, Expect, chromium, page } = require('@playwright/test');
 const fs = require('fs');
 import { CreateCustomer } from '../Pages/CreateCustomer';
 

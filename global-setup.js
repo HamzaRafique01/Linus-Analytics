@@ -4,12 +4,12 @@ const fs = require('fs/promises');
 
 async function saveStorageStateToJson(storageState, path) {
     try {
-      await fs.writeFile(path, JSON.stringify(storageState));
-      console.log('Storage state saved to', path);
+        await fs.writeFile(path, JSON.stringify(storageState));
+        console.log('Storage state saved to', path);
     } catch (error) {
-      console.error('Error saving storage state:', error);
+        console.error('Error saving storage state:', error);
     }
-  }
+}
 
 async function globalSetup() {
     const browser = await chromium.launch({ headless: false });
@@ -28,14 +28,14 @@ async function globalSetup() {
 
     await expect(page.locator('//p[contains(text(),"Linus Analytics")]')).toBeVisible({ timeout: 60000 });
 
-  const storageState = await context.storageState();
+    const storageState = await context.storageState();
 
-  await saveStorageStateToJson(storageState, './loginAuth.json');
+    await saveStorageStateToJson(storageState, './loginAuth.json');
 
-  // Save the state of the web page
-  //  await page.context().storageState({ path: "./loginAuth.json" });
+    // Save the state of the web page
+    //  await page.context().storageState({ path: "./loginAuth.json" });
 
-    await page.close();
+    await browser.close();
 }
 
 export default globalSetup;

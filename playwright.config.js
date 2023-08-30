@@ -15,43 +15,44 @@ module.exports = defineConfig({
   /* Retry on CI only */
   retries: process.env.CI ? 2 : 0,
   /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 0 : undefined,
+  workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-     baseURL: 'https://dev.d1t5gk6ckyak9p.amplifyapp.com',
+    baseURL: 'https://dev.d1t5gk6ckyak9p.amplifyapp.com',
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
     storageState: "./loginAuth.json",
   },
 
-   
+
 
   /* Configure projects for major browsers */
   projects: [
-    
+
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome']
-    }
-     
+      use: {
+        ...devices['Desktop Chrome']
+      }
+
     },
 
 
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    },
+    // {
+    //   name: 'firefox',
+    //   use: { ...devices['Desktop Firefox'] },
+    // },
 
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-    },
-    
+    // {
+    //   name: 'webkit',
+    //   use: { ...devices['Desktop Safari'] },
+    // },
 
-    
+
+
     /* Test against mobile viewports. */
     // {
     //   name: 'Mobile Chrome',
@@ -75,10 +76,10 @@ module.exports = defineConfig({
 
   /* Run your local dev server before starting the tests */
   // webServer: {
-    // command: 'npm run start',
-    // url: 'http://127.0.0.1:3000',
-    // reuseExistingServer: !process.env.CI,
-    // timeout: 120 * 1000,
+  // command: 'npm run start',
+  // url: 'http://127.0.0.1:3000',
+  // reuseExistingServer: !process.env.CI,
+  // timeout: 120 * 1000,
   // },
 });
 
