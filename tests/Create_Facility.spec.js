@@ -95,6 +95,7 @@ const browser = await chromium.launch();
 //   console.log(rawData);
 //   const jsonData = JSON.parse(rawData);
 
+<<<<<<< Updated upstream
 // const F_Facility_name = jsonData.facility.F_Facility_name;
 // const F_street1 = jsonData.facility.F_street1;
 // const F_street2 = jsonData.facility.F_street2;
@@ -102,6 +103,9 @@ const browser = await chromium.launch();
 // const F_ZipCode =constants.facility.F_ZipCode
 =======
 test('Create Facility', async ({ page }) => {
+=======
+test.skip('Create Facility', async ({ page }) => {
+>>>>>>> Stashed changes
 
 
   await page.goto("./facilities");
