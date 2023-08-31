@@ -1,25 +1,18 @@
-const { test, Expect, chromium, page } = require('@playwright/test');
-const fs = require('fs');
-import { CreateScale } from '../Pages/CreateScale';
+const { test } = require('@playwright/test');
+const CreateScale = require('../Pages/CreateScale');
+const testData = require('../testData');
+
+test('Create Scale', async ({ page }) => {
 
 
+  const { scaleID, scaleName } = testData.scaleData;
 
-test.skip('Create Scale', async ({ page }) => {
+  console.log(testData.scaleData)
 
-  await page.goto("./scales/");
   const scale = new CreateScale(page);
-
-  const dataPath = './constants.json';
-  const rawData = fs.readFileSync(dataPath, { encoding: 'utf-8' });
-  console.log(rawData);
-  const jsonData = JSON.parse(rawData);
-
-  const id = jsonData.scale.Scale_id;
-  const name = jsonData.scale.Scale_Name;
-
-
-  await scale.clickAddScale(page);
+  await scale.scaleNavigation()
+  await scale.clickAddScale();
   await page.waitForTimeout(12000);
-  await scale.ScaleCreate(id, name, page);
-  await scale.clickonScaleSavebtn(page);
+  await scale.ScaleCreate(scaleID, scaleName);
+  await scale.clickonScaleSavebtn();
 });

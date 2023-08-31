@@ -5,7 +5,7 @@ class CreateCustomer {
 
         this.page = page;
 
-        customericon = page.locator('//img[@alt="Customers-icon"]');
+        this.customericon = page.locator('//img[@alt="Customers-icon"]');
         this.Addcustomer = page.locator("//button[@class='MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-disableElevation MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-disableElevation css-4i0zct']//span[@class='MuiButton-startIcon MuiButton-iconSizeMedium css-6xugel']");
         this.customernameInput = page.locator("//input[@placeholder='Customer Name']");
         this.street1Input = page.locator("//input[@placeholder='Street Address 1']");
@@ -21,14 +21,13 @@ class CreateCustomer {
     }
 
 
-    async CustomerCreate(name, street1, street2, city, zipcode) {
+    async enterCustomerDetails(customerName, customerStreet1, customerStreet2, customerCity, customerZipCode) {
 
-        await this.customernameInput.fill(name);
-        await this.street1Input.fill(street1);
-        await this.street2Input.fill(street2);
-        await this.cityInput.fill(city);
-        await this.zipcodeInput.fill(zipcode);
-
+        await this.customernameInput.fill(customerName);
+        await this.street1Input.fill(customerStreet1);
+        await this.street2Input.fill(customerStreet2);
+        await this.cityInput.fill(customerCity);
+        await this.zipcodeInput.fill(customerZipCode);
 
     }
 
@@ -67,7 +66,7 @@ class CreateCustomer {
     }
 
     async customerNavigation() {
-        await this.page.goto("./customers/"); // Use page.goto() to navigate
+        await this.page.goto("./customers/");
     }
 
 }

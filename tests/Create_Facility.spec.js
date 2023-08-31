@@ -1,156 +1,27 @@
-const fs = require('fs');
-import { CreateFacility } from '../Pages/CreateFacility';
-const {test, Expect , chromium, page} = require('@playwright/test');
-const constants = require('../constants.json')
+//const fs = require('fs');
+const { test } = require('@playwright/test');
+const testData = require('../testData');
+const CreateFacility = require('../Pages/CreateFacility');
 
-
-//import { CreateFacility } from '../Pages/CreateFacility';
-const { CreateFacility } = require('../Pages/CreateFacility');
-
-test('Create Facility', async ({}) => {
-
-const browser = await chromium.launch();
-  const page = await browser.newPage();
-  
-  
-  await page.goto("./facilities/");
-  const Facility = new CreateFacility(page);
-
-    // Load the data.js script in the page context
-    await page.addScriptTag({ path: './constants.js' });
-
-    // Access the data using JavaScript in the browser context
-  const F_Facility_name = await page.evaluate(() => facilitydata.F_Facility_name);
-  const F_street1 = await page.evaluate(() => facilitydata.F_street1);
-  const F_street2 = await page.evaluate(() => facilitydata.F_street2);
-  const F_City = await page.evaluate(() => facilitydata.F_City);
-  const F_ZipCode = await page.evaluate(() => facilitydata.F_ZipCode);
-
-
-
-
- await Facility.clickFacilityIcon(page)
- await Facility.clickAddFacility(page);
- await Facility.createFacility(F_Facility_name, F_street1, F_street2, F_City, F_ZipCode, page);
- await Facility.clickFacilityCountry(page);
- await Facility.selectFacilityCountry(page);
- await Facility.clickFacilitystate(page);
- await Facility.slecteFacilitystate(page);
- await Facility.clickFacilityCustomer(page); 
- await Facility.selectFacilityCustomer(page);
- await Facility.clickFacilityweight(page);
- await Facility.selectFacilityweight(page);
- await Facility.clickonFacilitySavebtn(page);
-
-  }) 
-  
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  //   const dataPath = './constants.json';
-//   const rawData = fs.readFileSync(dataPath ,{encoding: 'utf-8'});
-//   console.log(rawData);
-//   const jsonData = JSON.parse(rawData);
-
-<<<<<<< Updated upstream
-// const F_Facility_name = jsonData.facility.F_Facility_name;
-// const F_street1 = jsonData.facility.F_street1;
-// const F_street2 = jsonData.facility.F_street2;
-// const F_City = jsonData.facility.F_City;
-// const F_ZipCode =constants.facility.F_ZipCode
-=======
 test('Create Facility', async ({ page }) => {
-=======
-test.skip('Create Facility', async ({ page }) => {
->>>>>>> Stashed changes
 
+  const { facilityName, facilityStreet1, facilityStreet2, facilityCity, facilityZipCode } = testData.facilitydata;
 
-  await page.goto("./facilities");
+  console.log(testData.facilitydata)
+
   const Facility = new CreateFacility(page);
-
-  const dataPath = './constants.json';
-  const rawData = fs.readFileSync(dataPath, { encoding: 'utf-8' });
-  console.log(rawData);
-  const jsonData = JSON.parse(rawData);
-
-  const F_Facility_name = jsonData.facility.F_Facility_name;
-  const F_street1 = jsonData.facility.F_street1;
-  const F_street2 = jsonData.facility.F_street2;
-  const F_City = jsonData.facility.F_City;
-  const F_ZipCode = constants.facility.F_ZipCode
-
-
-  await Facility.clickFacilityIcon(page)
-  await Facility.clickAddFacility(page);
-  await Facility.createFacility(F_Facility_name, F_street1, F_street2, F_City, F_ZipCode, page);
-  await Facility.clickFacilityCountry(page);
-  await Facility.selectFacilityCountry(page);
-  await Facility.clickFacilitystate(page);
-  await Facility.slecteFacilitystate(page);
-  await Facility.clickFacilityCustomer(page);
-  await Facility.selectFacilityCustomer(page);
-  await Facility.clickFacilityweight(page);
-  await Facility.selectFacilityweight(page);
-  await Facility.clickonFacilitySavebtn(page);
+  await Facility.facilityNavigation()
+  // await Facility.clickFacilityIcon() 
+  await Facility.clickAddFacility();
+  await Facility.clickFacilityCustomer();
+  await Facility.selectFacilityCustomer();
+  await Facility.enterFacilityDetails(facilityName, facilityStreet1, facilityStreet2, facilityCity, facilityZipCode);
+  await Facility.clickFacilityCountry();
+  await Facility.selectFacilityCountry();
+  await Facility.clickFacilitystate();
+  await Facility.slecteFacilitystate();
+  await Facility.clickFacilityweight();
+  await Facility.selectFacilityweight();
+  await Facility.clickonFacilitySavebtn();
 
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> 3d059ac4beaeefec11e42ec80838251fb02ad5b7

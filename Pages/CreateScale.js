@@ -1,38 +1,39 @@
-class CreateScale{
+class CreateScale {
 
-    constructor(page){
+    constructor(page) {
 
         this.page = page;
-        this.scaleicon = "//img[@alt='Scales-icon']";
-        this.Addscale = "//button[@class='MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-disableElevation MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-disableElevation css-4i0zct']";
-        this.ScaleIDInput = "//input[@placeholder='ID']";
-        this.ScaleNameInput = "//input[@placeholder='Scale Name']";
-        this.savebtn = "//button[@class='MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-fullWidth css-k2bprm']";
+        this.scaleicon = page.locator("//img[@alt='Scales-icon']");
+        this.Addscale = page.locator("//button[@class='MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-disableElevation MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-disableElevation css-4i0zct']");
+        this.ScaleIDInput = page.locator("//input[@placeholder='ID']");
+        this.ScaleNameInput = page.locator("//input[@placeholder='Scale Name']");
+        this.savebtn = page.locator("//button[@class='MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-fullWidth css-k2bprm']");
 
     }
 
 
-    async ScaleCreate(scaleid, name, page){
-        
-        await this.page.locator(this.ScaleIDInput).fill(scaleid);
-        await this.page.locator(this.ScaleNameInput).fill(name);
+    async ScaleCreate(scaleID, scaleName) {
+
+        await this.ScaleIDInput.fill(scaleID);
+        await this.ScaleNameInput.fill(scaleName);
 
     }
 
-    async clickScaleIcon(page){
-        await this.page.locator(this.scaleicon).click()
+    async clickScaleIcon() {
+        await this.scaleicon.click()
     }
-    async clickAddScale(page){
-        await this.page.locator(this.Addscale).click()
+    async clickAddScale() {
+        await this.Addscale.click()
     }
 
-    async clickonScaleSavebtn(pages){
-        await this.page.locator(this.savebtn).click();
+    async clickonScaleSavebtn() {
+        await this.savebtn.click();
+    }
+
+    async scaleNavigation() {
+        await this.page.goto("./scales");
     }
 
 }
 
-
-
-
-module.exports = {CreateScale}
+module.exports = CreateScale;
