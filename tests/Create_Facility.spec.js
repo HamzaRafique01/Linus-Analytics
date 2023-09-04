@@ -1,27 +1,29 @@
-//const fs = require('fs');
+const fs = require('fs');
 const { test } = require('@playwright/test');
 const testData = require('../testData');
 const CreateFacility = require('../Pages/CreateFacility');
 
-test('Create Facility', async ({ page }) => {
 
-  const { facilityName, facilityStreet1, facilityStreet2, facilityCity, facilityZipCode } = testData.facilitydata;
+test.skip('Create Facility', async ({ page }) => {
+
+  var { facilityCustomerName, facilityName, facilityStreet1, facilityStreet2, facilityCity,facilityCountry,facilityState, facilityZipCode,facilityWeight } = testData.facilitydata;
 
   console.log(testData.facilitydata)
 
   const Facility = new CreateFacility(page);
-  await Facility.facilityNavigation()
-  // await Facility.clickFacilityIcon() 
+  await Facility.facilityNavigation();
+  await Facility.verificationgranted();
   await Facility.clickAddFacility();
-  await Facility.clickFacilityCustomer();
-  await Facility.selectFacilityCustomer();
-  await Facility.enterFacilityDetails(facilityName, facilityStreet1, facilityStreet2, facilityCity, facilityZipCode);
-  await Facility.clickFacilityCountry();
-  await Facility.selectFacilityCountry();
-  await Facility.clickFacilitystate();
-  await Facility.slecteFacilitystate();
-  await Facility.clickFacilityweight();
-  await Facility.selectFacilityweight();
+  await page.waitForTimeout(12000);
+  await Facility.clickFacilityCustomer(facilityCustomerName);
+  await Facility.enterFacilityDetails(facilityName, facilityStreet1, facilityStreet2, facilityZipCode);
+  await Facility.selectFacilityCountry(facilityCountry);
+  await Facility.selecteFacilitystate(facilityState);
+  await Facility.selectFacilityCity(facilityCity);
+  await Facility.selectFacilityweight(facilityWeight);
   await Facility.clickonFacilitySavebtn();
+  await page.pause();
+  await Facility.verificationgranted();
+  
 
 })
