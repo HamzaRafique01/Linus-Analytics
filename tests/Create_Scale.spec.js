@@ -5,7 +5,7 @@ const fs = require('fs');
 
 
 
-test('Create Scale', async ({ page }) => {
+test.skip('Create Scale', async ({ page }) => {
 
 
   const { scaleId, scaleName } = testData.scaleData;

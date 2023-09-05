@@ -1,7 +1,7 @@
 module.exports = {
 
-    customerData: {
-        customerName: 'Alex User Services',
+    customerData: { 
+        customerName: 'Zubair Shahid',
         customerStreet1: '211 Banff Ave',
         customerStreet2: 'Banff',
         customerCity: 'Kabul',
