@@ -1,6 +1,6 @@
 const { default: getText } = require('webdriverio/build/commands/element/getText');
 const testData = require('../testData');
-var customerName;
+var customerText;
 
 class CreateCustomer {
 
@@ -38,12 +38,13 @@ class CreateCustomer {
 
     async enterCustomerDetails(customerName, customerStreet1, customerStreet2, customerZipCode) {
 
-        await this.customernameInput.fill(customerName);
+        customerText = await this.customernameInput.fill(customerName);
         await this.street1Input.fill(customerStreet1);
         await this.street2Input.fill(customerStreet2);
         await this.zipcodeInput.fill(customerZipCode);
 
-        console.log("value is ------^&*((---- " + customerName)
+        console.log("value is ------^&*((---- " + customerText)
+        
 
         
 
