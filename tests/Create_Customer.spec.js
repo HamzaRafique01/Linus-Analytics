@@ -18,7 +18,7 @@ test.describe('Customers All functionality', ()=> {
         await Customer.clickaddcustomer();
         await page.waitForTimeout(3000);
         await Customer.enterCustomerDetails(customerName, customerStreet1, customerStreet2, customerZipCode);
-        // await Customer.getCustomerName();
+        await Customer.getCustomerName();
         await Customer.selectcountry(customerCountry);
         await Customer.slectestate(customerState);
         await Customer.selectcity(customerCity);
@@ -29,12 +29,12 @@ test.describe('Customers All functionality', ()=> {
 
     test('Archive Customer', async({ page }) => {
 
-        var { customerName } = testData.customerData;
+     
 
         const Customer = new CreateCustomer(page);
         await Customer.customerNavigation();
         await page.waitForTimeout(3000);
-        await Customer.searchCustomer(customerName);
+        await Customer.searchCustomer();
         await page.waitForTimeout(3000);
         await Customer.goToSearchedUser()
         await page.waitForTimeout(3000);

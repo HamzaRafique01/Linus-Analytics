@@ -1,6 +1,6 @@
 const { default: getText } = require('webdriverio/build/commands/element/getText');
 const testData = require('../testData');
-var customerText;
+var fieldvalue;
 
 class CreateCustomer {
 
@@ -24,7 +24,7 @@ class CreateCustomer {
         this.selectedcity = page.locator('//li[@data-value="'+customerCity+'"]');
         this.Customertext = page.locator("//*[contains(text(),'Add Customer')]");
         this.searchbar = page.locator("//input[@placeholder='Search...']");
-        this.searcheduser = page.locator('//h4[@aria-label="'+ customerName +'"]'); 
+        this.searcheduser = page.locator('//h4[@aria-label="'+ fieldvalue +'"]'); 
         this.threedotsmenu = page.locator('//button[@class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1yxmbwk"]');
         this.archive = page.locator("//*[contains(text(),'Archive')]");
         this.active = page.locator("//*[contains(text(),'Active')]");
@@ -38,25 +38,20 @@ class CreateCustomer {
 
     async enterCustomerDetails(customerName, customerStreet1, customerStreet2, customerZipCode) {
 
-        customerText = await this.customernameInput.fill(customerName);
+        await this.customernameInput.fill(customerName);
         await this.street1Input.fill(customerStreet1);
         await this.street2Input.fill(customerStreet2);
-        await this.zipcodeInput.fill(customerZipCode);
-
-        console.log("value is ------^&*((---- " + customerText)
-        
-
-        
+        await this.zipcodeInput.fill(customerZipCode);  
 
     }
 
-//    async getCustomerName(){
+   async getCustomerName(){
 
-//     let val = await this.customernameInput.getAttribute('value');
-//     console.log("value is ---------- " + val)
-//     return val;
+    fieldvalue = await this.customernameInput.getAttribute('value');
+    console.log("value is ---------- " + fieldvalue)
+    return fieldvalue;
 
-//    }
+   }
 
     async verificationgranted(){
         await this.Customertext.isVisible()
@@ -99,10 +94,11 @@ class CreateCustomer {
         await this.page.goto("./customers/");
     }
 
-    async searchCustomer(customerName) {
+    async searchCustomer() {
 
+        console.log("value is ---------- " + fieldvalue)
         await this.searchbar.click();
-        await this.searchbar.fill(customerName);
+        await this.searchbar.fill(fieldvalue);
         
     }
 
@@ -111,7 +107,7 @@ class CreateCustomer {
         let val = await this.searcheduser.getAttribute('aria-label');
         console.log("value is ---------- " + val)
 
-        if(this.customerName == this.val){
+        if(this.fieldvalue == this.val){
 
             await this.searcheduser.click();
             await this.threedotsmenu.isVisible();
