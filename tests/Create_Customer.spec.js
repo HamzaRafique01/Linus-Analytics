@@ -13,8 +13,8 @@ test.describe('Customers All functionality', ()=> {
     
         const Customer = new CreateCustomer(page);
         await Customer.customerNavigation();
+        await page.waitForTimeout(3000);
         await Customer.verificationgranted();
-    
         await Customer.clickaddcustomer();
         await page.waitForTimeout(3000);
         await Customer.enterCustomerDetails(customerName, customerStreet1, customerStreet2, customerZipCode);
@@ -23,13 +23,11 @@ test.describe('Customers All functionality', ()=> {
         await Customer.slectestate(customerState);
         await Customer.selectcity(customerCity);
         await Customer.clickonsavebtn();
-        await Customer.verificationgranted();
+        await Customer.usercreated();
         await page.waitForTimeout(5000);
     })
 
-    test('Archive Customer', async({ page }) => {
-
-     
+    test('Archive Restore Delete Customer', async({ page }) => {
 
         const Customer = new CreateCustomer(page);
         await Customer.customerNavigation();

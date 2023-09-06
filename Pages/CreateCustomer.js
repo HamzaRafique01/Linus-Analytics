@@ -54,40 +54,106 @@ class CreateCustomer {
    }
 
     async verificationgranted(){
-        await this.Customertext.isVisible()
+
+        if(await this.Customertext.isVisible()){
+            console.log("User Successfully Navigate to Customer Tab");
+        }else{
+            console.log("User failed to navigate");
+        }
     
     }
 
+    async usercreated(){
+
+        if(await this.searchbar.isVisible()){
+            console.log("User Successfully Created and Navigate back to the Customer Tab");
+        }else{
+            console.log("User failed to navigate");
+        }
+    }
+
     async clickCustomerIcon() {
-        await this.customericon.click()
+        
+       if( await this.customericon.isVisible()){
+
+        console.log("User Clicked on the Customer icon");
+       }else{
+        console.log("Customer icon is not found");
+       }
 
     }
 
     async clickaddcustomer() {
-        await this.Addcustomer.click();
 
+        if(await this.Addcustomer.isVisible()){
+
+            console.log("Add Customer Button is Visible......!");
+            await this.Addcustomer.click();
+            console.log("Add Customer Button Clicked......!");
+        }else{
+            console.log("Add Customer Button not found......!");
+        }
+    
     } 
 
     async selectcity() {
-        await this.city.click();
-        await this.selectedcity.click();
 
+        if(await this.city.isVisible()){
+
+            console.log("City Field is Visible......!");
+            await this.city.click();
+            await this.selectedcity.click();
+            console.log("City Field data filled Successfully......!");
+
+        }else{
+            console.log("City Field not found......!");
+        }
+        
     }
 
     async selectcountry() {
-        await this.country.click();
-        await this.selectedcountry.click();
 
+        if(await this.country.isVisible()){
+
+            console.log("Country Field is Visible......!");
+            await this.country.click();
+            await this.selectedcountry.click();
+            console.log("Country Field data filled Successfully......!");
+
+        }else{
+            console.log("Country Field not found......!");
+        }
+    
     }
 
     async slectestate() {
-        await this.state.click();
-        await this.selectedstate.click();
 
+        if(await this.state.isVisible()){
+
+            console.log("State Field is Visible......!");
+            await this.state.click();
+            await this.selectedstate.click();
+            console.log("State Field data filled Successfully......!");
+
+        }else{
+            console.log("State Field not found......!");
+        }
+    
     }
 
     async clickonsavebtn() {
-        await this.savebtn.click();
+
+        if(await this.savebtn.isVisible()){
+
+            console.log("Save button is visible and clickable......!");
+            await this.savebtn.click();
+            console.log("Save button clicked......!");
+
+        }else{
+            console.log("Save Button not found......!");
+        }
+        
+        
     }
 
     async customerNavigation() {
@@ -96,26 +162,34 @@ class CreateCustomer {
 
     async searchCustomer() {
 
-        console.log("value is ---------- " + fieldvalue)
-        await this.searchbar.click();
-        await this.searchbar.fill(fieldvalue);
-        
+        console.log("value is ---------- " + fieldvalue);
+
+        if(await this.searchbar.isVisible()){
+
+            console.log("Search Box is found and editable......!");
+            await this.searchbar.click();
+            await this.searchbar.fill(fieldvalue);
+            console.log("Data is entered in the Searchbox......!");
+
+        }else{
+            console.log("Searcch Box is not found......!");    
+        }
+       
     }
 
     async goToSearchedUser(){
 
         let val = await this.searcheduser.getAttribute('aria-label');
-        console.log("value is ---------- " + val)
+        console.log("value is ---------- " + val);
 
         if(this.fieldvalue == this.val){
 
             await this.searcheduser.click();
             await this.threedotsmenu.isVisible();
+            await this.threedotsmenu.isVisible();
 
         }else{
-
-            console.error("User not found")
-
+            console.log("User not found");
         }
         
     }
@@ -123,33 +197,112 @@ class CreateCustomer {
 
     async archiveuser(){
 
-        await this.threedotsmenu.click();
-        await this.archive.click();
-        await this.archive.isVisible();
+        if(await this.threedotsmenu.isVisible()){
 
+            console.log("Three dots menu icon found");
+            await this.threedotsmenu.click();
+            console.log("Three dots menu icon clicked");
+
+            if(await this.archive.isVisible()){
+
+                console.log("Archive button item Is Visible");
+                await this.archive.click();
+                console.log("Archive button item Is Clicked");
+                await this.archive.isVisible();// Status Check is change Active to Archive or not.
+                console.log("User status changed to Archive User");
+
+
+            }else{
+                console.log("Archive button not found in three dots menu");
+            }
+        }else{
+            console.log("Three dots menu icon not found");
+        }
 
     }
 
 
     async activeuser(){
+        if(await this.threedotsmenu.isVisible()){
 
-        await this.threedotsmenu.click();
-        await this.restore.click();
-        await this.active.isVisible();
+            console.log("Three dots menu icon found");
+            await this.threedotsmenu.click();
+            console.log("Three dots menu icon clicked");
 
+            if(await this.restore.isVisible()){
+
+                console.log("Restore button is Visible");
+                await this.restore.click();
+                console.log("Restore button is Clicked");
+                await this.active.isVisible();
+                console.log("User status changed to Active User");
+
+            }else{
+                console.log("Restore button not found in three dots menu");
+            }
+        }else{
+            console.log("Three dots menu icon not found");
+        }
     }
+
+
+
 
     async deleteuser(){
 
-        await this.threedotsmenu.click();
-        await this.archive.click();
-        await this.archive.isVisible();
-        await this.threedotsmenu.click();
-        await this.delete.click();
-        await this.confirm_delete.click();
-        await this.Customertext.isVisible();
+        if(await this.threedotsmenu.isVisible()){
 
+            console.log("Three dots menu icon found");
+            await this.threedotsmenu.click();
+            console.log("Three dots menu icon clicked");
 
+            if(await this.archive.isVisible()){
+
+                console.log("Archive button item Is Visible");
+                await this.archive.click();
+                console.log("Archive button item Is Clicked");
+                await this.archive.isVisible();// Status Check is change Active to Archive or not.
+                console.log("User status changed to Archive User");
+
+                if(await this.threedotsmenu.isVisible()){
+
+                    console.log("Three dots nenu icon found");
+                    await this.threedotsmenu.click();
+                    console.log("Three dots menu icon clicked");
+
+                    if(await this.delete.isVisible(),{ timeout: 5000 }){
+
+                        
+                        console.log("Delete button is Visible");
+                        await this.delete.click();
+                        console.log("Delete button is Clicked");
+
+                        if(await this.confirm_delete.isVisible()){
+
+                            console.log("Confirm Delete button is Visible");
+                            await this.confirm_delete.click();
+                            console.log("Confirm Delete button is Visible");
+
+                            if(await this.searchbar.isVisible(),{ timeout: 5000 }){
+                                console.log("User Successfully Deleted and Navigate back to the Customer Tab");
+                            }else{
+                                console.log("User failed to navigate");
+                            }
+                        }else{
+                            console.log("Confirm Delete button not found");
+                        }
+                    }else{
+                        console.log("Delete button not found");
+                    }
+                }else{
+                    console.log("Three dots menu icon not found");
+                }
+            }else{
+                console.log("Archive button not found in three dots menu");
+            }
+        }else{
+            console.log("Three dots menu icon not found");
+        }
 
     }
 

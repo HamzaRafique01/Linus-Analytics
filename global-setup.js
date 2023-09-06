@@ -24,9 +24,14 @@ async function globalSetup() {
 
     await page.locator("//input[@name='password']").fill('Root@123');
 
+    await console.log("User Name_______: qalinusa@mailinator.com ")
+    await console.log("Password_______: Root@123 ")
+
     await page.click("//button[@class='MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-fullWidth css-k2bprm']");
 
-    await expect(page.locator('//p[contains(text(),"Linus Analytics")]')).toBeVisible({ timeout: 60000 });
+    await expect(page.locator('//div[contains(text(),"You are signed in to Linus Analytics")]')).toBeVisible({ timeout: 60000 });
+
+    await console.log("User Successfully Logged Into the Linus App")
 
     const storageState = await context.storageState();
 
