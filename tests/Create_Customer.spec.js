@@ -14,16 +14,16 @@ test.describe('Customers All functionality', ()=> {
         const Customer = new CreateCustomer(page);
         await Customer.customerNavigation();
         await page.waitForTimeout(3000);
-        await Customer.verificationgranted();
-        await Customer.clickaddcustomer();
+        await Customer.verificationGranted();
+        await Customer.clickAddCustomer();
         await page.waitForTimeout(3000);
         await Customer.enterCustomerDetails(customerName, customerStreet1, customerStreet2, customerZipCode);
         await Customer.getCustomerName();
-        await Customer.selectcountry(customerCountry);
-        await Customer.slectestate(customerState);
-        await Customer.selectcity(customerCity);
-        await Customer.clickonsavebtn();
-        await Customer.usercreated();
+        await Customer.selectCountry(customerCountry);
+        await Customer.slecteState(customerState);
+        await Customer.selectCity(customerCity);
+        await Customer.clickOnSaveBtn();
+        await Customer.userCreated();
         await page.waitForTimeout(5000);
     })
 
@@ -36,11 +36,11 @@ test.describe('Customers All functionality', ()=> {
         await page.waitForTimeout(3000);
         await Customer.goToSearchedUser()
         await page.waitForTimeout(3000);
-        await Customer.archiveuser();
+        await Customer.archiveUser();
         await page.waitForTimeout(3000);
-        await Customer.activeuser();
+        await Customer.activeUser();
         await page.waitForTimeout(3000);
-        await Customer.deleteuser();
+        await Customer.deleteUser();
         await page.waitForTimeout(3000);
 
     })
