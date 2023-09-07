@@ -27,7 +27,7 @@ test.describe('Customers All functionality', ()=> {
         await page.waitForTimeout(5000);
     })
 
-    test('Archive Restore Delete Customer', async({ page }) => {
+    test('Archive Customer', async({ page }) => {
 
         const Customer = new CreateCustomer(page);
         await Customer.customerNavigation();
@@ -38,11 +38,38 @@ test.describe('Customers All functionality', ()=> {
         await page.waitForTimeout(3000);
         await Customer.archiveUser();
         await page.waitForTimeout(3000);
+
+    })
+
+
+    test('Restore Customer', async({ page }) => {
+
+        const Customer = new CreateCustomer(page);
+        await Customer.customerNavigation();
+        await page.waitForTimeout(3000);
+        await Customer.searchCustomer();
+        await page.waitForTimeout(3000);
+        await Customer.goToSearchedUser()
+        await page.waitForTimeout(3000);
         await Customer.activeUser();
+        await page.waitForTimeout(3000);
+        
+    })
+
+
+    test('Delete Customer', async({ page }) => {
+
+        const Customer = new CreateCustomer(page);
+        await Customer.customerNavigation();
+        await page.waitForTimeout(3000);
+        await Customer.searchCustomer();
+        await page.waitForTimeout(3000);
+        await Customer.goToSearchedUser()
         await page.waitForTimeout(3000);
         await Customer.deleteUser();
         await page.waitForTimeout(3000);
 
+        
     })
 
 })

@@ -1,6 +1,7 @@
 const { default: getText } = require('webdriverio/build/commands/element/getText');
 const testData = require('../testData');
 var fieldValue;
+var data;
 
 class CreateCustomer {
 
@@ -49,6 +50,7 @@ class CreateCustomer {
 
     fieldValue = await this.customerNameInput.getAttribute('value');
     console.log("value is ---------- " + fieldValue)
+    data = fieldValue;
     return fieldValue;
 
    }
@@ -163,12 +165,13 @@ class CreateCustomer {
     async searchCustomer() {
 
         console.log("value is ---------- " + fieldValue);
+        console.log("value is ---------- " + data);
 
         if(await this.searchBox.isVisible()){
 
             console.log("Search box is found and editable......!");
             await this.searchBox.click();
-            await this.searchBox.fill(fieldValue);
+            await this.searchBox.fill(data);
             console.log("Data is entered in the searchbox......!");
 
         }else{
@@ -189,10 +192,7 @@ class CreateCustomer {
             console.log("User avialable......!"); 
             await this.searchedUser.click();
             console.log("User clicked......!"); 
-            await this.threeDotsMenu.isVisible();
-            console.log("Three dots menu avialable......!"); 
-            await this.threeDotsMenu.isVisible();
-            console.log("Three dots menu clicked......!"); 
+
 
         }else{
             console.log("User not found");
@@ -206,15 +206,15 @@ class CreateCustomer {
         if(await this.threeDotsMenu.isVisible()){
 
             console.log("Three dots menu icon found");
-            await this.threeDotsMenu.click();
+            await this.threeDotsMenu.click(),{timeout:3000};
             console.log("Three dots menu icon clicked");
 
-            if(await this.archive.isVisible()){
+            if(await this.archive.isVisible(),{timeout:3000}){
 
                 console.log("Archive button item is visible");
-                await this.archive.click();
+                await this.archive.click(),{timeout:3000};
                 console.log("Archive button item is clicked");
-                await this.archive.isVisible();// Status Check is change Active to Archive or not.
+                await this.archive.isVisible(),{timeout:3000};// Status Check is change Active to Archive or not.
                 console.log("User status changed to archive user");
 
 
@@ -250,7 +250,6 @@ class CreateCustomer {
             console.log("Three dots menu icon not found");
         }
     }
-
 
 
 
