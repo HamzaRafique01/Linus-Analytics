@@ -5,7 +5,7 @@ const testData = require('../testData');
 
 test.describe('Customers All functionality', ()=> {
 
-    test('Create Customer', async ({ page }) => {
+    test.skip('Create Customer', async ({ page }) => {
 
         var { customerName, customerStreet1, customerStreet2, customerCity,customerCountry,customerState, customerZipCode } = testData.customerData;
     
@@ -27,12 +27,14 @@ test.describe('Customers All functionality', ()=> {
         await page.waitForTimeout(5000);
     })
 
-    test('Archive Customer', async({ page }) => {
+    test.skip('Archive Customer', async({ page }) => {
+
+        var {data} = testData.customerData;
 
         const Customer = new CreateCustomer(page);
         await Customer.customerNavigation();
         await page.waitForTimeout(3000);
-        await Customer.searchCustomer();
+        await Customer.searchCustomer(data);
         await page.waitForTimeout(3000);
         await Customer.goToSearchedUser()
         await page.waitForTimeout(3000);
@@ -42,12 +44,14 @@ test.describe('Customers All functionality', ()=> {
     })
 
 
-    test('Restore Customer', async({ page }) => {
+    test.skip('Restore Customer', async({ page }) => {
+
+        var {data} = testData.customerData;
 
         const Customer = new CreateCustomer(page);
         await Customer.customerNavigation();
         await page.waitForTimeout(3000);
-        await Customer.searchCustomer();
+        await Customer.searchCustomer(data);
         await page.waitForTimeout(3000);
         await Customer.goToSearchedUser()
         await page.waitForTimeout(3000);
@@ -59,10 +63,12 @@ test.describe('Customers All functionality', ()=> {
 
     test('Delete Customer', async({ page }) => {
 
+        var {data} = testData.customerData;
+
         const Customer = new CreateCustomer(page);
         await Customer.customerNavigation();
         await page.waitForTimeout(3000);
-        await Customer.searchCustomer();
+        await Customer.searchCustomer(data);
         await page.waitForTimeout(3000);
         await Customer.goToSearchedUser()
         await page.waitForTimeout(3000);

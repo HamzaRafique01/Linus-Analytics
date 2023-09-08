@@ -1,7 +1,6 @@
 const { default: getText } = require('webdriverio/build/commands/element/getText');
 const testData = require('../testData');
 var fieldValue;
-var data;
 
 class CreateCustomer {
 
@@ -9,9 +8,9 @@ class CreateCustomer {
     constructor(page) {
 
         this.page = page;
-        var { customerCity,customerCountry,customerState} = testData.customerData;
+        var { customerCity,customerCountry,customerState, data} = testData.customerData;
         this.customerIcon = page.locator('//img[@alt="Customers-icon"]');
-        this.addCustomer = page.locator("//button[@class='MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-disableElevation MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-disableElevation css-4i0zct']//span[@class='MuiButton-startIcon MuiButton-iconSizeMedium css-6xugel']");
+        this.addCustomer = page.locator("//*[contains(text(),'Add Customer')]");
         this.customerNameInput = page.locator("//input[@placeholder='Customer Name']");
         this.street1Input = page.locator("//input[@placeholder='Street Address 1']");
         this.street2Input = page.locator("//input[@placeholder='Street Address 2 ']");
@@ -26,6 +25,7 @@ class CreateCustomer {
         this.customerText = page.locator("//*[contains(text(),'Add Customer')]");
         this.searchBox = page.locator("//input[@placeholder='Search...']");
         this.searchedUser = page.locator('//h4[@aria-label="'+ fieldValue +'"]'); 
+        this.searchedDataUser = page.locator('//h4[@aria-label="'+ data +'"]'); 
         this.threeDotsMenu = page.locator('//button[@class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1yxmbwk"]');
         this.archive = page.locator("//*[contains(text(),'Archive')]");
         this.active = page.locator("//*[contains(text(),'Active')]");
@@ -33,7 +33,6 @@ class CreateCustomer {
         this.delete = page.locator("//*[contains(text(),'Delete')]")
         this.confirmDelete = page.locator("//button[@class='MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-disableElevation MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-disableElevation MuiButton-fullWidth css-1o05m8h']");
     
-
     }
 
 
@@ -50,7 +49,6 @@ class CreateCustomer {
 
     fieldValue = await this.customerNameInput.getAttribute('value');
     console.log("value is ---------- " + fieldValue)
-    data = fieldValue;
     return fieldValue;
 
    }
@@ -153,8 +151,7 @@ class CreateCustomer {
 
         }else{
             console.log("Save button not found......!");
-        }
-        
+        } 
         
     }
 
@@ -162,42 +159,91 @@ class CreateCustomer {
         await this.page.goto("./customers/");
     }
 
-    async searchCustomer() {
+    async searchCustomer(data) {
+        
+        console.log("Field Value is ---------- " + fieldValue);
+        console.log("Data Value is ---------- " + data);
 
-        console.log("value is ---------- " + fieldValue);
-        console.log("value is ---------- " + data);
+        if(data == undefined && fieldValue != undefined){
 
-        if(await this.searchBox.isVisible()){
+            console.log("Field Value is ---------- " + fieldValue);
 
-            console.log("Search box is found and editable......!");
-            await this.searchBox.click();
-            await this.searchBox.fill(data);
-            console.log("Data is entered in the searchbox......!");
+            if(await this.searchBox.isVisible()){
+                
+                console.log("Search box is found and editable......!");
+                await this.searchBox.click();
+                await this.searchBox.fill(fieldValue);
+                console.log("Field Value is entered in the searchbox......!");
 
+            }else{
+                console.log("Searcch box is not found......!");    
+            }
         }else{
-            console.log("Searcch box is not found......!");    
-        }
+
+            console.log("Data Value is ---------- " + data);
+   
+            if(await this.searchBox.isVisible()){
+
+                console.log("Search box is found and editable......!");
+                await this.searchBox.click();
+                await this.searchBox.fill(data);
+                console.log("Data is entered in the searchbox......!");
+
+            }else{
+                console.log("Searcch box is not found......!");    
+            }
+         }
        
     }
 
-    async goToSearchedUser(){
+    async goToSearchedUser(data){
 
-        let val = await this.searchedUser.getAttribute('aria-label');
-        console.log("Val is ---------- " + val);
         console.log("Field Value is ---------- " + fieldValue);
+        console.log("Data Value is ---------- " + data);
+        
+        if(fieldValue != undefined){
 
-        if(this.fieldValue == this.val){
-
-            await this.searchedUser.isVisible();
-            console.log("User avialable......!"); 
-            await this.searchedUser.click();
-            console.log("User clicked......!"); 
-
+            let val = await this.searchedUser.getAttribute('aria-label');
+            console.log("Val is ---------- " + val);
+            console.log("Field Value is ---------- " + fieldValue);
+    
+    
+            if(this.fieldValue == this.val){
+    
+                await this.searchedUser.isVisible();
+                console.log("User avialable......!"); 
+                await this.searchedUser.click();
+                console.log("User clicked......!"); 
+    
+    
+            }else{
+                console.log("User not found");
+            }
 
         }else{
-            console.log("User not found");
+            
+            let val = await this.searchedDataUser.getAttribute('aria-label');
+            console.log("Val is ---------- " + val);
+            console.log("Data Value is ---------- " + data);
+    
+    
+            if(this.data == this.val){
+    
+                await this.searchedDataUser.isVisible();
+                console.log("User avialable......!"); 
+                await this.searchedDataUser.click();
+                console.log("User clicked......!"); 
+    
+    
+            }else{
+                console.log("User not found");
+            }
+
         }
-        
+
+       
+  
+
     }
 
 
@@ -206,15 +252,15 @@ class CreateCustomer {
         if(await this.threeDotsMenu.isVisible()){
 
             console.log("Three dots menu icon found");
-            await this.threeDotsMenu.click(),{timeout:3000};
+            await this.threeDotsMenu.click();
             console.log("Three dots menu icon clicked");
 
             if(await this.archive.isVisible(),{timeout:3000}){
 
-                console.log("Archive button item is visible");
-                await this.archive.click(),{timeout:3000};
+                console.log("Archive button is visible");
+                await this.archive.click();
                 console.log("Archive button item is clicked");
-                await this.archive.isVisible(),{timeout:3000};// Status Check is change Active to Archive or not.
+                await this.archive.isVisible();// Status Check is change Active to Archive or not.
                 console.log("User status changed to archive user");
 
 
@@ -227,7 +273,6 @@ class CreateCustomer {
 
     }
 
-
     async activeUser(){
         if(await this.threeDotsMenu.isVisible()){
 
@@ -235,12 +280,12 @@ class CreateCustomer {
             await this.threeDotsMenu.click();
             console.log("Three dots menu icon clicked");
 
-            if(await this.restore.isVisible()){
+            if(await this.restore.isVisible(),{timeout: 3000}){
 
                 console.log("Restore button is visible");
                 await this.restore.click();
                 console.log("Restore button is clicked");
-                await this.active.isVisible();
+                await this.active.isVisible(),{timeout:3000};
                 console.log("User status changed to active user");
 
             }else{
@@ -251,17 +296,15 @@ class CreateCustomer {
         }
     }
 
-
-
     async deleteUser(){
 
-        if(await this.threeDotsMenu.isVisible()){
+        if(await this.threeDotsMenu.isVisible(),{ timeout: 5000 }){
 
             console.log("Three dots menu icon found");
             await this.threeDotsMenu.click();
             console.log("Three dots menu icon clicked");
 
-            if(await this.archive.isVisible()){
+            if(await this.archive.isVisible(),{ timeout: 5000 }){
 
                 console.log("Archive button item is visible");
                 await this.archive.click();
@@ -269,7 +312,7 @@ class CreateCustomer {
                 await this.archive.isVisible();// Status Check is change Active to Archive or not.
                 console.log("User status changed to archive user");
 
-                if(await this.threeDotsMenu.isVisible()){
+                if(await this.threeDotsMenu.isVisible(),{ timeout: 5000 }){
 
                     console.log("Three dots nenu icon found");
                     await this.threeDotsMenu.click();
@@ -277,12 +320,11 @@ class CreateCustomer {
 
                     if(await this.delete.isVisible(),{ timeout: 5000 }){
 
-                        
                         console.log("Delete button is visible");
                         await this.delete.click();
                         console.log("Delete button is clicked");
 
-                        if(await this.confirmDelete.isVisible()){
+                        if(await this.confirmDelete.isVisible(),{ timeout: 5000 }){
 
                             console.log("Confirm delete button is visible");
                             await this.confirmDelete.click();
@@ -312,5 +354,4 @@ class CreateCustomer {
     }
 
 }
-
 module.exports = CreateCustomer;
