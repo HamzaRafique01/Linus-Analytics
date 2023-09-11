@@ -1,7 +1,7 @@
 module.exports = {
 
     customerData: { 
-        data : 'Pershan Aadmi',
+        data : '',
         customerName: 'Pershan Aadmi',
         customerStreet1: '211 Banff Ave',
         customerStreet2: 'Banff',
@@ -23,6 +23,7 @@ module.exports = {
     },
 
     scaleData: {
+        Id: '12345',
         scaleId: "13245",
         scaleName: "Alex Scale"
     }

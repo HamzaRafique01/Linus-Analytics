@@ -3,25 +3,39 @@ const CreateScale = require('../Pages/CreateScale');
 const testData = require('../testData');
 const fs = require('fs');
 
+test.describe('Scale All functionality', ()=> {
 
+test('Create Scale', async ({ page }) => {
 
-test.skip('Create Scale', async ({ page }) => {
-
-
-  const { scaleId, scaleName } = testData.scaleData;
+  const { scaleId, scaleName  } = testData.scaleData;
 
   console.log(testData.scaleData)
 
   const scale = new CreateScale(page);
   await scale.scaleNavigation()
-  await scale.verificationgranted();
+  await scale.verificationGranted();
   await scale.clickAddScale();
   await page.waitForTimeout(12000);
-  await page.pause();
   await scale.ScaleCreate(scaleId, scaleName);
-  await page.pause();
-  await scale.clickonScaleSavebtn();
-  await page.pause();
-  await scale.verificationgranted();
+  await scale.clickOnScaleSavebtn();
+  await scale.verificationGranted();
 
-});
+})
+
+
+test('Archive Scale', async({ page }) => {
+
+
+  const scale = new CreateScale(page);
+  await scale.scaleNavigation();
+  await page.waitForTimeout(3000);
+  await scale.searchScale();
+  await page.waitForTimeout(3000);
+  await scale.goToSearchedScale()
+  await page.waitForTimeout(3000);
+  await scale.archiveScale();
+  await page.waitForTimeout(3000);
+
+})
+
+})

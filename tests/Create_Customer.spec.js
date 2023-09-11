@@ -3,9 +3,9 @@ const fs = require('fs');
 const CreateCustomer = require('../Pages/CreateCustomer');
 const testData = require('../testData');
 
-test.describe('Customers All functionality', ()=> {
+test.describe.skip('Customers All functionality', ()=> {
 
-    test.skip('Create Customer', async ({ page }) => {
+    test('Create Customer', async ({ page }) => {
 
         var { customerName, customerStreet1, customerStreet2, customerCity,customerCountry,customerState, customerZipCode } = testData.customerData;
     

@@ -75,11 +75,12 @@ class CreateCustomer {
     async clickCustomerIcon() {
         
        if( await this.customerIcon.isVisible()){
-
+        
         console.log("User clicked on the customer icon");
-       }else{
-        console.log("Customer icon is not found");
-       }
+
+        }else{
+            console.log("Customer icon is not found");
+        }
 
     }
 
@@ -176,7 +177,7 @@ class CreateCustomer {
                 console.log("Field Value is entered in the searchbox......!");
 
             }else{
-                console.log("Searcch box is not found......!");    
+                console.log("Search box is not found......!");    
             }
         }else{
 
@@ -190,7 +191,7 @@ class CreateCustomer {
                 console.log("Data is entered in the searchbox......!");
 
             }else{
-                console.log("Searcch box is not found......!");    
+                console.log("Search box is not found......!");    
             }
          }
        
